@@ -1,3 +1,5 @@
+package com.xiaoyu.algorithm;
+
 /**
  * 数组作为数据结构的优点
  * 1.构建非常简单
