@@ -28,7 +28,27 @@ public class LinkedListAlgorithm {
 
 
     public static void main(String[] args) {
+        int[] arr = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+        ListNode head = array2ListNode(arr);
+        ListNode listNode = reverseListNode(head);
+        printListNode(listNode);
+    }
 
+    public static ListNode array2ListNode(int[] array) {
+        ListNode head = new ListNode(array[0]);
+        ListNode cur = head;
+        for (int i = 1; i < array.length; i++) {
+            cur.next = new ListNode(array[i]);
+            cur = cur.next;
+        }
+        return head;
+    }
+
+    public static void printListNode(ListNode head) {
+        while (head != null) {
+            System.out.println(head.val);
+            head = head.next;
+        }
     }
 
     /**
@@ -37,9 +57,7 @@ public class LinkedListAlgorithm {
      * 输入一个链表，输出该链表中倒数第k个节点。为了符合大多数人的习惯，本题从1开始计数，即链表的尾节点是倒数第1个节点。
      * 例如，一个链表有6个节点，从头节点开始，它们的值依次是1、2、3、4、5、6。这个链表的倒数第3个节点是值为4的节点
      * <p>
-     * 来源：力扣（LeetCode）
      * 链接：https://leetcode-cn.com/problems/lian-biao-zhong-dao-shu-di-kge-jie-dian-lcof
-     * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
      */
     public static ListNode getKthFromEnd(ListNode head, int k) {
         ListNode head1 = head;
@@ -55,5 +73,41 @@ public class LinkedListAlgorithm {
             head1 = head1.next;
         }
         return head1;
+    }
+
+
+    /**
+     * 翻转链表
+     * 1.保存curr.next指针
+     * 2.当前指针.next指向上一个
+     * 3.向后移动指针
+     * 当前指针记为pre
+     * 保存的next指针记为curr
+     */
+    public static ListNode reverseListNode(ListNode head) {
+        ListNode pre = null;
+        ListNode curr = head;
+        ListNode next;
+        while (curr != null) {
+            next = curr.next;
+            curr.next = pre;
+            pre = curr;
+            curr = next;
+        }
+        return pre;
+    }
+
+    /**
+     * K 个一组翻转链表
+     * <p>
+     * 给你一个链表，每 k 个节点一组进行翻转，请你返回翻转后的链表。
+     * k 是一个正整数，它的值小于或等于链表的长度。
+     * 如果节点总数不是 k 的整数倍，那么请将最后剩余的节点保持原有顺序。
+     * <p>
+     * 链接：https://leetcode-cn.com/problems/reverse-nodes-in-k-group
+     */
+    public static ListNode reverseKGroup(ListNode head, int k) {
+
+        return null;
     }
 }
