@@ -2,6 +2,8 @@ package com.xiaoyu.algorithm;
 
 import com.xiaoyu.datastructure.ListNode;
 
+import java.util.List;
+
 /**
  * 链表作为数据结构的优点
  * 1.能灵活的分配存储空间
@@ -28,9 +30,9 @@ public class LinkedListAlgorithm {
 
 
     public static void main(String[] args) {
-        int[] arr = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+        int[] arr = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
         ListNode head = array2ListNode(arr);
-        ListNode listNode = reverseListNode(head);
+        ListNode listNode = reverseKGroup(head, 4);
         printListNode(listNode);
     }
 
@@ -107,7 +109,33 @@ public class LinkedListAlgorithm {
      * 链接：https://leetcode-cn.com/problems/reverse-nodes-in-k-group
      */
     public static ListNode reverseKGroup(ListNode head, int k) {
-
-        return null;
+        ListNode sham = new ListNode(-1);
+        sham.next = head;
+        ListNode end = head;
+        ListNode pre = sham;
+        while (true) {
+            // 让 end 遍历到需要翻转的最后一个元素位置
+            for (int i = 0; i < k - 1 && end != null; i++) {
+                end = end.next;
+            }
+            // 只要 end 遍历到了 null 直接跳出循环
+            if (end == null) {
+                break;
+            }
+            //1.临时保存下一个段链
+            ListNode nextStart = end.next;
+            //2.1拿到需要反转链表的表头
+            ListNode start = pre.next;
+            //2.2断链为了翻转用
+            end.next = null;
+            //2.3开始翻转,用翻转后的链表代替翻转前的
+            pre.next = reverseListNode(start);
+            //3.1把之前断开的链在连上
+            start.next = nextStart;
+            //4.重新计数
+            end = nextStart;
+            pre = start;
+        }
+        return sham.next;
     }
 }
