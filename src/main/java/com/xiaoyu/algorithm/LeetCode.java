@@ -1,36 +1,70 @@
 package com.xiaoyu.algorithm;
 
+import java.util.ArrayDeque;
 import java.util.HashMap;
 import java.util.Map;
 
 public class LeetCode {
+
     public static void main(String[] args) {
-        int[] ints = twoSum(new int[]{2, 7, 11, 15}, 9);
-        for (int anInt : ints) {
-            System.out.println(anInt);
+        int[] arr = new int[]{1, 3, -1, -3, 5, 3, 6, 7};
+        int[] ints = maxSlidingWindow2(arr, 3);
+        for (int aInt : ints) {
+            System.out.println(aInt);
         }
     }
 
-
-    /**
-     * 给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。
-     * <p>
-     * 你可以假设每种输入只会对应一个答案。但是，数组中同一个元素不能使用两遍。
-     * <p>
-     * 来源：力扣（LeetCode）
-     * 链接：https://leetcode-cn.com/problems/two-sum
-     * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
-     */
-    private static int[] twoSum(int[] nums, int target) {
-        Map<Integer, Integer> map = new HashMap<>();
-        for (int i = 0; i < nums.length; i++) {
-            int gap = target - nums[i];
-            if (map.containsKey(gap)) {
-                return new int[]{i, map.get(gap)};
+    public static int[] maxSlidingWindow(int[] nums, int k) {
+        int length = nums.length;
+        int[] arr = new int[length - k + 1];
+        for (int i = 0; i < length - k + 1; i++) {
+            arr[i] = nums[i];
+            for (int j = i; j < +k; j++) {
+                arr[i] = Math.max(arr[i], nums[j]);
             }
-            map.put(nums[i], i);
         }
 
-        return new int[2];
+        return arr;
+    }
+
+    /**
+     * 239. 滑动窗口最大值
+     * 给定一个数组 nums，有一个大小为 k 的滑动窗口从数组的最左侧移动到数组的最右侧。你只可以看到在滑动窗口内的 k 个数字。滑动窗口每次只向右移动一位。
+     * 返回滑动窗口中的最大值。
+     * <p>
+     * 链接：https://leetcode-cn.com/problems/sliding-window-maximum
+     * <p>
+     * 解题思路
+     * 利用双端队列,可以获取队列头和队列尾的特性
+     * 保持双端队列 从头到尾 由大到小排列,如果要添加的元素比队尾的元素大,则先将队尾移除,在进行排序
+     *
+     * 1.首先先确定初始化滑块队列的排序
+     * 2.每向后一步,判断队列头部是否移出滑块范围,判断队尾元素.
+     */
+    public static int[] maxSlidingWindow2(int[] nums, int k) {
+        int length = nums.length;
+        ArrayDeque<Integer> deq = new ArrayDeque<>();
+        for (int i = 0; i < k; i++) {
+            while (!deq.isEmpty() && nums[deq.getLast()] < nums[i]) {
+                deq.removeLast();
+            }
+            deq.addLast(i);
+        }
+        int[] arr = new int[length - k + 1];
+        arr[0] = nums[deq.getFirst()];
+
+        for (int i = k; i < length; i++) {
+            if (i - deq.getFirst() >= k) {
+                deq.removeFirst();
+            }
+            while (!deq.isEmpty() && nums[deq.getLast()] < nums[i]) {
+                deq.removeLast();
+            }
+            deq.addLast(i);
+
+            arr[i - k + 1] = nums[deq.getFirst()];
+        }
+
+        return arr;
     }
 }
