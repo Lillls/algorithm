@@ -13,14 +13,14 @@ public class TreeNodeAlgorithm {
 
         TreeNodeAlgorithm algorithm = new TreeNodeAlgorithm();
         TreeNode treeRoot = algorithm.createTreeRoot();
-        List<Integer> list1 = algorithm.inorderTraversalStack(treeRoot);
-        List<Integer> list = algorithm.inorderTraversal(treeRoot);
+        List<Integer> list1 = algorithm.preorderTraversal(treeRoot);
+        List<Integer> list = algorithm.preOrderTraversalStack(treeRoot);
         for (Integer integer : list) {
-            System.out.println(integer);
+            System.out.print(integer + " ");
         }
-        
+        System.out.println();
         for (Integer integer : list1) {
-            System.out.println(integer);
+            System.out.print(integer + " ");
         }
     }
 
@@ -54,31 +54,31 @@ public class TreeNodeAlgorithm {
     }
 
 
-    public List<Integer> inorderTraversal(TreeNode root) {
+    public List<Integer> preorderTraversal(TreeNode root) {
         List<Integer> list = new ArrayList<>();
-        inOrderTraversal(root, list);
+        preOrderTraversal(root, list);
         return list;
     }
 
-    private void inOrderTraversal(TreeNode root, List<Integer> list) {
+    private void preOrderTraversal(TreeNode root, List<Integer> list) {
         if (root == null) return;
-        inOrderTraversal(root.left, list);
         list.add(root.val);
-        inOrderTraversal(root.right, list);
+        preOrderTraversal(root.left, list);
+        preOrderTraversal(root.right, list);
     }
 
 
-    public List<Integer> inorderTraversalStack(TreeNode root) {
+    public List<Integer> preOrderTraversalStack(TreeNode root) {
         List<Integer> list = new ArrayList<>();
         Stack<TreeNode> stack = new Stack<>();
         TreeNode curr = root;
         while (curr != null || !stack.empty()) {
             while (curr != null) {
+                list.add(curr.val);
                 stack.push(curr);
                 curr = curr.left;
             }
             curr = stack.pop();
-            list.add(curr.val);
             curr = curr.right;
         }
         return list;
