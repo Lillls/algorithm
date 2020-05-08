@@ -1,6 +1,8 @@
 package com.xiaoyu.algorithm;
 
-import com.xiaoyu.datastructure.BinaryTreeNode;
+import com.xiaoyu.datastructure.TreeNode;
+
+import java.util.List;
 
 public class BinaryTreeNodeAlgorithm {
 
@@ -8,33 +10,26 @@ public class BinaryTreeNodeAlgorithm {
 
 
         BinaryTreeNodeAlgorithm algorithm = new BinaryTreeNodeAlgorithm();
-        BinaryTreeNode treeRoot = algorithm.createTreeRoot();
-//        BinaryTreeNode.preOrderTraversal(treeRoot);
-//        System.out.println();
-//        BinaryTreeNode.inOrderTraversal(treeRoot);
-//        System.out.println();
-//        BinaryTreeNode.postOrderTraversal(treeRoot);
-//        System.out.println();
-
+        TreeNode treeRoot = algorithm.createTreeRoot();
 
 
 
     }
 
-    private BinaryTreeNode createTreeRoot() {
-        BinaryTreeNode root = new BinaryTreeNode(0);
-        BinaryTreeNode treeNode1 = new BinaryTreeNode(1);
-        BinaryTreeNode treeNode2 = new BinaryTreeNode(2);
-        BinaryTreeNode treeNode3 = new BinaryTreeNode(3);
-        BinaryTreeNode treeNode4 = new BinaryTreeNode(4);
-        BinaryTreeNode treeNode5 = new BinaryTreeNode(5);
-        BinaryTreeNode treeNode6 = new BinaryTreeNode(6);
-        BinaryTreeNode treeNode7 = new BinaryTreeNode(7);
-        BinaryTreeNode treeNode8 = new BinaryTreeNode(8);
-        BinaryTreeNode treeNode9 = new BinaryTreeNode(9);
-        BinaryTreeNode treeNode10 = new BinaryTreeNode(10);
-        BinaryTreeNode treeNode11 = new BinaryTreeNode(11);
-        BinaryTreeNode treeNode12 = new BinaryTreeNode(12);
+    private TreeNode createTreeRoot() {
+        TreeNode root = new TreeNode(0);
+        TreeNode treeNode1 = new TreeNode(1);
+        TreeNode treeNode2 = new TreeNode(2);
+        TreeNode treeNode3 = new TreeNode(3);
+        TreeNode treeNode4 = new TreeNode(4);
+        TreeNode treeNode5 = new TreeNode(5);
+        TreeNode treeNode6 = new TreeNode(6);
+        TreeNode treeNode7 = new TreeNode(7);
+        TreeNode treeNode8 = new TreeNode(8);
+        TreeNode treeNode9 = new TreeNode(9);
+        TreeNode treeNode10 = new TreeNode(10);
+        TreeNode treeNode11 = new TreeNode(11);
+        TreeNode treeNode12 = new TreeNode(12);
         root.setLeftChild(treeNode1);
         root.setRightChild(treeNode2);
         treeNode1.setLeftChild(treeNode3);

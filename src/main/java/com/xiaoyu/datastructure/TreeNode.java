@@ -1,14 +1,12 @@
 package com.xiaoyu.datastructure;
 
-import java.util.Stack;
-
-public class BinaryTreeNode {
+public class TreeNode {
 
     private int data;  //数据
-    private BinaryTreeNode leftChild;  //左孩子
-    private BinaryTreeNode rightChild; //右孩子
+    private TreeNode leftChild;  //左孩子
+    private TreeNode rightChild; //右孩子
 
-    public BinaryTreeNode(int data) {
+    public TreeNode(int data) {
         this.data = data;
     }
 
@@ -20,19 +18,19 @@ public class BinaryTreeNode {
         this.data = data;
     }
 
-    public BinaryTreeNode getLeftChild() {
+    public TreeNode getLeftChild() {
         return leftChild;
     }
 
-    public void setLeftChild(BinaryTreeNode leftChild) {
+    public void setLeftChild(TreeNode leftChild) {
         this.leftChild = leftChild;
     }
 
-    public BinaryTreeNode getRightChild() {
+    public TreeNode getRightChild() {
         return rightChild;
     }
 
-    public void setRightChild(BinaryTreeNode rightChild) {
+    public void setRightChild(TreeNode rightChild) {
         this.rightChild = rightChild;
     }
 
@@ -41,7 +39,7 @@ public class BinaryTreeNode {
      * 先根遍历左子树
      * 先根遍历右子树
      */
-    public static void preOrderTraversal(BinaryTreeNode treeNode) {
+    public static void preOrderTraversal(TreeNode treeNode) {
         if (treeNode == null) return;
         System.out.print(treeNode.getData()+" ");
         preOrderTraversal(treeNode.getLeftChild());
@@ -53,7 +51,7 @@ public class BinaryTreeNode {
      * 访问根节点
      * 遍历右子树
      */
-    public static void inOrderTraversal(BinaryTreeNode treeNode) {
+    public static void inOrderTraversal(TreeNode treeNode) {
         if (treeNode == null) return;
         inOrderTraversal(treeNode.getLeftChild());
         System.out.print(treeNode.getData()+" ");
@@ -65,7 +63,7 @@ public class BinaryTreeNode {
      * 遍历右子树
      * 访问根节点
      */
-    public static void postOrderTraversal(BinaryTreeNode treeNode) {
+    public static void postOrderTraversal(TreeNode treeNode) {
         if (treeNode == null) return;
         postOrderTraversal(treeNode.getLeftChild());
         postOrderTraversal(treeNode.getRightChild());
