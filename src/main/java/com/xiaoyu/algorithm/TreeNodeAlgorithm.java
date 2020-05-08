@@ -2,16 +2,16 @@ package com.xiaoyu.algorithm;
 
 import com.xiaoyu.datastructure.TreeNode;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class BinaryTreeNodeAlgorithm {
+public class TreeNodeAlgorithm {
 
     public static void main(String[] args) {
 
 
-        BinaryTreeNodeAlgorithm algorithm = new BinaryTreeNodeAlgorithm();
+        TreeNodeAlgorithm algorithm = new TreeNodeAlgorithm();
         TreeNode treeRoot = algorithm.createTreeRoot();
-
 
 
     }
@@ -30,18 +30,18 @@ public class BinaryTreeNodeAlgorithm {
         TreeNode treeNode10 = new TreeNode(10);
         TreeNode treeNode11 = new TreeNode(11);
         TreeNode treeNode12 = new TreeNode(12);
-        root.setLeftChild(treeNode1);
-        root.setRightChild(treeNode2);
-        treeNode1.setLeftChild(treeNode3);
-        treeNode1.setRightChild(treeNode4);
-        treeNode2.setLeftChild(treeNode5);
-        treeNode2.setRightChild(treeNode6);
-        treeNode3.setRightChild(treeNode7);
-        treeNode3.setRightChild(treeNode8);
-        treeNode4.setLeftChild(treeNode9);
-        treeNode4.setRightChild(treeNode10);
-        treeNode5.setLeftChild(treeNode11);
-        treeNode5.setRightChild(treeNode12);
+        root.left=treeNode1;
+        root.right=treeNode2;
+        treeNode1.left=treeNode3;
+        treeNode1.right=treeNode4;
+        treeNode2.left=treeNode5;
+        treeNode2.right=treeNode6;
+        treeNode3.right=treeNode7;
+        treeNode3.right=treeNode8;
+        treeNode4.left=treeNode9;
+        treeNode4.right=treeNode10;
+        treeNode5.left=treeNode11;
+        treeNode5.right=treeNode12;
         return root;
     }
 }

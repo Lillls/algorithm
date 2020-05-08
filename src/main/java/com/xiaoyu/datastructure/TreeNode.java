@@ -2,36 +2,12 @@ package com.xiaoyu.datastructure;
 
 public class TreeNode {
 
-    private int data;  //数据
-    private TreeNode leftChild;  //左孩子
-    private TreeNode rightChild; //右孩子
+    public int val;
+    public TreeNode left;
+    public TreeNode right;
 
-    public TreeNode(int data) {
-        this.data = data;
-    }
-
-    public int getData() {
-        return data;
-    }
-
-    public void setData(int data) {
-        this.data = data;
-    }
-
-    public TreeNode getLeftChild() {
-        return leftChild;
-    }
-
-    public void setLeftChild(TreeNode leftChild) {
-        this.leftChild = leftChild;
-    }
-
-    public TreeNode getRightChild() {
-        return rightChild;
-    }
-
-    public void setRightChild(TreeNode rightChild) {
-        this.rightChild = rightChild;
+    public TreeNode(int x) {
+        val = x;
     }
 
     /**
@@ -41,9 +17,9 @@ public class TreeNode {
      */
     public static void preOrderTraversal(TreeNode treeNode) {
         if (treeNode == null) return;
-        System.out.print(treeNode.getData()+" ");
-        preOrderTraversal(treeNode.getLeftChild());
-        preOrderTraversal(treeNode.getRightChild());
+        System.out.print(treeNode.val + " ");
+        preOrderTraversal(treeNode.left);
+        preOrderTraversal(treeNode.right);
     }
 
     /**
@@ -53,9 +29,9 @@ public class TreeNode {
      */
     public static void inOrderTraversal(TreeNode treeNode) {
         if (treeNode == null) return;
-        inOrderTraversal(treeNode.getLeftChild());
-        System.out.print(treeNode.getData()+" ");
-        inOrderTraversal(treeNode.getRightChild());
+        inOrderTraversal(treeNode.left);
+        System.out.print(treeNode.val + " ");
+        inOrderTraversal(treeNode.right);
     }
 
     /**
@@ -65,9 +41,9 @@ public class TreeNode {
      */
     public static void postOrderTraversal(TreeNode treeNode) {
         if (treeNode == null) return;
-        postOrderTraversal(treeNode.getLeftChild());
-        postOrderTraversal(treeNode.getRightChild());
-        System.out.print(treeNode.getData()+" ");
+        postOrderTraversal(treeNode.left);
+        postOrderTraversal(treeNode.right);
+        System.out.print(treeNode.val + " ");
     }
 
 }
