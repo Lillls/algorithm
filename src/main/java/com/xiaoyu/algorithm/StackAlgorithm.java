@@ -6,15 +6,8 @@ import java.util.Stack;
 public class StackAlgorithm {
 
     public static void main(String[] args) {
-        int[] ints = dailyTemperatures(new int[]{73, 74, 75, 71, 69, 72, 76, 73});
-        int[] ints2 = dailyTemperatures2(new int[]{73, 74, 75, 71, 69, 72, 76, 73});
-        for (int anInt : ints) {
-            System.out.println(anInt);
-        }
-
-        for (int anInt : ints2) {
-            System.out.println(anInt);
-        }
+        String s = min2After("9+(3-1)*3+10/2");
+        System.out.println(s);
     }
 
     /**
@@ -54,6 +47,52 @@ public class StackAlgorithm {
      * 大话数据结构P108页 中缀表达式变后缀表达式
      */
 
+    private static String min2After(String after) {
+        StringBuilder stringBuilder = new StringBuilder();
+        char[] chars = after.toCharArray();
+        Stack<Character> stack = new Stack<>();
+
+        for (char aChar : chars) {
+            boolean digit = Character.isDigit(aChar);
+            if (digit) {
+                stringBuilder.append(aChar);
+                stringBuilder.append(" ");
+            } else if (aChar == ')') {
+                while (!stack.empty()) {
+                    Character pop = stack.pop();
+                    if (pop == '(') break;
+                    stringBuilder.append(pop);
+                    stringBuilder.append(" ");
+                }
+            } else {
+                if (!stack.empty() && symbolPriority(aChar, stack.peek())) {
+                    while (!stack.empty()) {
+                        stringBuilder.append(stack.pop());
+                        stringBuilder.append(" ");
+                    }
+                }
+                stack.push(aChar);
+
+            }
+
+        }
+
+        while (!stack.empty()) {
+            stringBuilder.append(stack.pop());
+        }
+
+        return stringBuilder.toString();
+    }
+
+    /**
+     * @return 判断char1的符号优先级是否小于char2
+     * 右括号和加减一个级别
+     * 左括号和乘除一个级别
+     */
+    private static boolean symbolPriority(char char1, char char2) {
+        return (char1 == '-' || char1 == '+') && (char2 == '*' || char2 == '/');
+    }
+
     /**
      * 每日温度
      * 根据每日 气温 列表，请重新生成一个列表，对应位置的输出是需要再等待多久温度才会升高超过该日的天数。如果之后都不会升高，请在该位置用 0 来代替。
@@ -85,6 +124,7 @@ public class StackAlgorithm {
         }
         return counts;
     }
+
     //笨方法
     private static int[] dailyTemperatures2(int[] temperatures) {
         int[] counts = new int[temperatures.length];
